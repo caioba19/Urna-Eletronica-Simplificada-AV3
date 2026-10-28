@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f0f4f8;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Textura e profundidade física do teclado da Urna Eletrônica */
+.urna-key {
+  position: relative;
+  background: linear-gradient(180deg, #3d4248 0%, #22262c 100%);
+  border: 1px solid #14181c;
+  border-top: 1px solid #5a626c;
+  box-shadow: 0 4px 0 #0e1114, 0 6px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.04s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.urna-key:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0e1114, 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.urna-key-branco {
+  background: linear-gradient(180deg, #ffffff 0%, #e8edf2 100%);
+  border: 1px solid #bcc5cf;
+  border-top: 1px solid #ffffff;
+  box-shadow: 0 4px 0 #8c97a3, 0 6px 8px rgba(0, 0, 0, 0.25);
+  color: #0f172a;
+}
+.urna-key-branco:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #8c97a3, 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.urna-key-corrige {
+  background: linear-gradient(180deg, #f97316 0%, #c2410c 100%);
+  border: 1px solid #9a3412;
+  border-top: 1px solid #fdba74;
+  box-shadow: 0 4px 0 #7c2d12, 0 6px 8px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+}
+.urna-key-corrige:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #7c2d12, 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.urna-key-confirma {
+  background: linear-gradient(180deg, #16a34a 0%, #15803d 100%);
+  border: 1px solid #14532d;
+  border-top: 1px solid #86efac;
+  box-shadow: 0 5px 0 #0d381c, 0 7px 10px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+}
+.urna-key-confirma:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0d381c, 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Moldura e textura da tela LCD da Urna */
+.urna-screen-bevel {
+  background: #fbfcf8;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+/* Papel Sulfite da Cédula / Colinha Eleitoral com dobra realista */
+.cedula-papel {
+  background-color: #faf9f5;
+  background-image: radial-gradient(#d1d5db 0.75px, transparent 0.75px);
+  background-size: 16px 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* Carimbo oficial em tom carmim/tinta seca */
+.carimbo-oficial {
+  color: #991b1b;
+  border: 2px dashed #991b1b;
+  transform: rotate(-3deg);
+  opacity: 0.88;
+}
+
+/* Papel térmico do Boletim de Urna com picote */
+.boletim-papel {
+  background-color: #fdfcf7;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  font-family: 'JetBrains Mono', Courier, monospace;
+}

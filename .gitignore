@@ -1,0 +1,25 @@
+# Java / Maven
+target/
+*.class
+*.jar
+firebase-key.json
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Node / React / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
