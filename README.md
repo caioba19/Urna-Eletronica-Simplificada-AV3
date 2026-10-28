@@ -118,6 +118,6 @@ Este projeto de extensão está diretamente alinhado com:
 ---
 
 ## 👨‍💻 Autor & Curso
-* **Autor:** Nirton Afonso de Oliveira Filho
-* **Curso:** Bacharelado em Ciência da Computação
+* **Autor:** Caio Vitorino ,Caio Vinicius ,Daniel Oliveira ,Maicon Dias e Matheus Rosa
+* **Curso:** Tecnologo em Analise em Desenvolvimento de Sistemas
 * **Instituição:** UNIJORGE – Salvador/BA
