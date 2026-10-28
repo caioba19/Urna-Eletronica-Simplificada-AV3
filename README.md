@@ -1,14 +1,15 @@
 # 🗳️ Urna Cidadã: Simulação Educativa e Combate à Desinformação
 
-> **Proposta de Extensão Curricular – Curso de Ciência da Computação**  
+> **Proposta de Extensão Curricular – Curso de Análise e Desenvolvimento de Sistemas (ADS)**  
 > **Centro Universitário Jorge Amado (UNIJORGE) – Salvador/BA**  
+> **Professor Orientador:** Prof. Anildo Matos  
 > **Ano:** 2026
 
 ---
 
 ## 🎯 Sobre o Projeto
 
-O **Urna Cidadã** é um projeto de extensão universitária concebido no âmbito da disciplina de **Programação Orientada a Objetos (POO)**. O projeto alia o rigor técnico do desenvolvimento de software à formação cidadã de jovens estudantes do Ensino Médio de escolas públicas em Salvador/BA, promovendo a literacia eleitoral e o combate a conteúdos falsos e manipulados por inteligência artificial (*deepfakes*).
+O **Urna Cidadã** é um projeto de extensão universitária concebido no âmbito da disciplina de **Programação Orientada a Objetos (POO)** do curso de **Análise e Desenvolvimento de Sistemas (ADS)**. O projeto alia o rigor técnico do desenvolvimento de software à formação cidadã de jovens estudantes do Ensino Médio de escolas públicas em Salvador/BA, promovendo a literacia eleitoral e o combate a conteúdos falsos e manipulados por inteligência artificial (*deepfakes*).
 
 O ecossistema é composto por:
 1. **Core Backend / Desktop (Java 17 + Swing):** Aplicação focada nos conceitos clássicos de POO (abstração, herança, polimorfismo, encapsulamento e padrões de projeto), simulador de urna em Java Swing com sintetizador de áudio nativo e persistência em nuvem com Firebase (Cloud Firestore) e fallback em memória.
@@ -117,7 +118,13 @@ Este projeto de extensão está diretamente alinhado com:
 
 ---
 
-## 👨‍💻 Autor & Curso
-* **Autor:** Nirton Afonso de Oliveira Filho
-* **Curso:** Bacharelado em Ciência da Computação
+## 👨‍💻 Equipe & Orientação
+* **Professor Orientador:** Prof. Anildo Matos
+* **Curso:** Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas (ADS)
 * **Instituição:** UNIJORGE – Salvador/BA
+* **Integrantes da Equipe:**
+  * Caio Vinícius Santos da Costa Leite
+  * Caio Vitorino
+  * Daniel Oliveira
+  * Maicon Dias
+  * Matheus Rosa
