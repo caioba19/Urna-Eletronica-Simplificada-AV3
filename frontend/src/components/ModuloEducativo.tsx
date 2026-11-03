@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, AlertTriangle, CheckCircle2, Search, Cpu, Eye, ArrowRight, FileCheck2, Binary, Lock } from 'lucide-react';
+import { ShieldCheck, AlertTriangle, CheckCircle2, Search, Cpu, FileCheck2, Binary, Lock } from 'lucide-react';
 
 interface CasoAnalise {
   id: number;
