@@ -97,46 +97,28 @@ export const ModuloEducativo: React.FC = () => {
   const casoSelecionado = CASOS_FORENSES.find((c) => c.id === casoAtivo) || CASOS_FORENSES[0];
 
   return (
-    <div className="max-w-6xl mx-auto py-6 px-4 font-sans text-slate-800 space-y-8 animate-fade-in">
+    <div className="learning-page">
       
       {/* 1. DOSSIÊ HEADER: IDENTIDADE FATO OU BOATO DO TSE */}
-      <div className="bg-white border border-slate-300 rounded p-6 shadow-sm border-l-4 border-l-[#002b49]">
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200 mb-4">
-          <div className="flex items-center gap-2">
-            <span className="bg-[#002b49] text-amber-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase">
-              TSE • FATO OU BOATO
-            </span>
-            <span className="text-xs font-mono font-bold text-slate-500 uppercase">
-              PROGRAMA PERMANENTE DE ENFRENTAMENTO À DESINFORMAÇÃO
-            </span>
-          </div>
-
-          <span className="text-[11px] font-mono text-slate-500">
-            OFICINA DE EXTENSÃO UNIJORGE • SALVADOR/BA
-          </span>
-        </div>
-
-        <h1 className="text-2xl sm:text-3xl font-display font-black text-[#00223d] tracking-tight">
-          Dossiê Forense: Criptografia da Urna & Verificação de IA
-        </h1>
+      <div className="learning-intro">
+        <p className="eyebrow">CONTEÚDO EDUCATIVO</p>
+        <h1>Informação, eleições e inteligência artificial</h1>
 
         <p className="text-slate-600 text-sm leading-relaxed max-w-3xl mt-2">
-          Guia investigativo desenvolvido para jovens estudantes do Ensino Médio, demonstrando os princípios 
-          de Ciência da Computação que garantem a inviolabilidade do sistema eleitoral brasileiro e as técnicas 
-          periciais para desmascarar áudios e vídeos forjados por inteligência artificial generativa.
+          Explore conceitos de segurança digital e pratique uma leitura crítica de conteúdos compartilhados online.
         </p>
       </div>
 
       {/* 2. ARQUITETURA DE SEGURANÇA DA URNA EM 4 NÍVEIS */}
-      <div className="bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
-        <div className="bg-[#002b49] text-white p-4 flex items-center justify-between">
+      <div className="learning-section">
+        <div className="learning-section__heading">
           <div className="flex items-center gap-2">
             <Binary className="w-5 h-5 text-amber-400" />
-            <h2 className="text-sm font-display font-black uppercase tracking-wider">
-              Níveis de Blindagem Criptográfica da Urna Eletrônica
+            <h2 className="text-sm font-display font-semibold">
+              Como pensar sobre segurança digital
             </h2>
           </div>
-          <span className="text-[10px] font-mono text-slate-300">ARQUITETURA EM PROFUNDIDADE</span>
+          <span className="text-[10px] text-slate-500">4 conceitos</span>
         </div>
 
         <div className="p-6">
@@ -150,8 +132,8 @@ export const ModuloEducativo: React.FC = () => {
                   onClick={() => setCamadaAtiva(idx)}
                   className={`p-3.5 rounded text-left transition-all border ${
                     isAtiva
-                      ? 'bg-[#002b49] text-white border-[#002b49] shadow-sm ring-1 ring-[#002b49]'
-                      : 'bg-[#f8fafc] border-slate-300 text-slate-700 hover:bg-slate-100'
+                      ? 'learning-topic is-active'
+                      : 'learning-topic'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -190,15 +172,15 @@ export const ModuloEducativo: React.FC = () => {
       </div>
 
       {/* 3. LABORATÓRIO FORENSE DE DEEPFAKES (ATIVIDADE INVESTIGATIVA) */}
-      <div className="bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
-        <div className="bg-[#00223d] text-white p-4 flex items-center justify-between">
+      <div className="learning-section">
+        <div className="learning-section__heading">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-amber-400" />
-            <h2 className="text-sm font-display font-black uppercase tracking-wider">
-              Laboratório Pericial: Detecção Forense de Deepfakes
+            <h2 className="text-sm font-display font-semibold">
+              Pratique a leitura crítica de uma mensagem
             </h2>
           </div>
-          <span className="text-[10px] font-mono text-slate-300">ANÁLISE DE INCIDENTES REAIS</span>
+          <span className="text-[10px] text-slate-500">Exercício fictício</span>
         </div>
 
         <div className="p-6 space-y-5">
@@ -213,8 +195,8 @@ export const ModuloEducativo: React.FC = () => {
                 }}
                 className={`px-4 py-2 rounded text-xs font-mono font-bold transition border ${
                   casoAtivo === caso.id
-                    ? 'bg-[#002b49] text-white border-[#002b49]'
-                    : 'bg-[#f8fafc] text-slate-700 border-slate-300 hover:bg-slate-100'
+                    ? 'learning-case is-active'
+                    : 'learning-case'
                 }`}
               >
                 CASO #{caso.id} • {caso.tipo}

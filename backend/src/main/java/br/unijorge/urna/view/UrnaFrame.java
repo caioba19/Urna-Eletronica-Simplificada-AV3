@@ -14,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class UrnaFrame extends JFrame {
     private int indiceCargo;
     private boolean branco;
     private boolean finalizada;
+    private boolean gravando;
 
     private final JLabel lblCargo = rotulo(22, Font.BOLD);
     private final JLabel lblNumero = rotulo(44, Font.BOLD);
@@ -44,6 +46,7 @@ public class UrnaFrame extends JFrame {
 
     public UrnaFrame(UrnaService service) {
         super("Urna Cidadã");
+        setTitle("Urna Cidadã — Simulação Educativa Fictícia");
         this.service = service;
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -169,7 +172,7 @@ public class UrnaFrame extends JFrame {
     }
 
     private void digitar(String d) {
-        if (finalizada || branco || digitos.length() >= cargoAtual().getDigitos()) {
+        if (finalizada || gravando || branco || digitos.length() >= cargoAtual().getDigitos()) {
             return;
         }
         SomUrna.tocarClique();
@@ -178,7 +181,7 @@ public class UrnaFrame extends JFrame {
     }
 
     private void votarBranco() {
-        if (finalizada || digitos.length() > 0) {
+        if (finalizada || gravando || digitos.length() > 0) {
             return;
         }
         SomUrna.tocarClique();
@@ -187,7 +190,7 @@ public class UrnaFrame extends JFrame {
     }
 
     private void corrigir() {
-        if (finalizada) {
+        if (finalizada || gravando) {
             return;
         }
         SomUrna.tocarClique();
@@ -197,25 +200,43 @@ public class UrnaFrame extends JFrame {
     }
 
     private void confirmar() {
-        if (finalizada) {
+        if (finalizada || gravando) {
             return;
         }
         Cargo cargo = cargoAtual();
+        java.util.concurrent.CompletableFuture<Void> gravacao;
 
         if (branco) {
-            service.registrarBranco(cargo);
+            gravacao = service.registrarBranco(cargo);
         } else if (digitos.length() == cargo.getDigitos()) {
             String numero = digitos.toString();
             if (service.buscarCandidato(cargo, numero).isPresent()) {
-                service.registrarValido(cargo, numero);
+                gravacao = service.registrarValido(cargo, numero);
             } else {
-                service.registrarNulo(cargo);
+                gravacao = service.registrarNulo(cargo);
             }
         } else {
             SomUrna.tocarAlerta();
             return;
         }
 
+        gravando = true;
+        lblAviso.setText("Gravando voto...");
+        gravacao.whenComplete((resultado, erro) -> SwingUtilities.invokeLater(() -> {
+            gravando = false;
+            if (erro != null) {
+                Throwable causa = erro.getCause() == null ? erro : erro.getCause();
+                JOptionPane.showMessageDialog(this,
+                        "NÃ£o foi possÃ­vel gravar o voto: " + causa.getMessage(),
+                        "Falha ao gravar voto", JOptionPane.ERROR_MESSAGE);
+                atualizarTela();
+                return;
+            }
+            concluirVoto();
+        }));
+    }
+
+    private void concluirVoto() {
         digitos.setLength(0);
         branco = false;
 
@@ -251,6 +272,10 @@ public class UrnaFrame extends JFrame {
             lblNumero.setText("FIM");
             lblNome.setText("Voto registrado. Obrigado por participar!");
             return;
+        }
+
+        if (gravando) {
+            lblAviso.setText("Gravando voto...");
         }
 
         Cargo cargo = cargoAtual();

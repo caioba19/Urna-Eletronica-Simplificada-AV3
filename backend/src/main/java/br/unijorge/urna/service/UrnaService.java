@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.CompletableFuture;
 
 public class UrnaService {
     private final VotoRepository repository;
@@ -33,26 +34,26 @@ public class UrnaService {
         return catalogo.buscar(cargo, numero);
     }
 
-    public void registrarValido(Cargo cargo, String numero) {
-        gravar(Voto.valido(cargo, numero));
+    public CompletableFuture<Void> registrarValido(Cargo cargo, String numero) {
+        return gravar(Voto.valido(cargo, numero));
     }
 
-    public void registrarBranco(Cargo cargo) {
-        gravar(Voto.branco(cargo));
+    public CompletableFuture<Void> registrarBranco(Cargo cargo) {
+        return gravar(Voto.branco(cargo));
     }
 
-    public void registrarNulo(Cargo cargo) {
-        gravar(Voto.nulo(cargo));
+    public CompletableFuture<Void> registrarNulo(Cargo cargo) {
+        return gravar(Voto.nulo(cargo));
     }
 
-    private void gravar(Voto voto) {
-        executor.submit(() -> {
+    private CompletableFuture<Void> gravar(Voto voto) {
+        return CompletableFuture.runAsync(() -> {
             try {
                 repository.salvar(voto);
             } catch (Exception e) {
-                System.err.println("Erro ao gravar voto: " + e.getMessage());
+                throw new java.util.concurrent.CompletionException(e);
             }
-        });
+        }, executor);
     }
 
     public List<Apuracao> apurar() throws Exception {

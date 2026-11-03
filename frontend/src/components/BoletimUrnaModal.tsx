@@ -44,10 +44,10 @@ export const BoletimUrnaModal: React.FC<BoletimUrnaModalProps> = ({ votos, onFec
         <div className="flex items-center justify-between border-b border-slate-300 pb-3 mb-4">
           <div>
             <h3 className="text-base font-display font-black text-[#00223d] uppercase">
-              Boletim de Urna Oficial (BU)
+              Boletim Simulado (BU)
             </h3>
             <p className="text-xs text-slate-500 font-sans">
-              Documento público auditável emitido pela urna eletrônica às 17h
+              Exemplo educativo gerado com os dados fictícios desta simulação
             </p>
           </div>
           <button
@@ -62,17 +62,17 @@ export const BoletimUrnaModal: React.FC<BoletimUrnaModalProps> = ({ votos, onFec
         {/* Papel Térmico Simulado */}
         <div className="boletim-papel p-6 rounded-lg text-slate-900 text-[11px] leading-tight font-mono border border-slate-300 select-all max-h-[70vh] overflow-y-auto">
           <div className="text-center font-bold pb-2 border-b border-dashed border-slate-500 mb-3 space-y-0.5">
-            <div>JUSTIÇA ELEITORAL</div>
-            <div>BOLETIM DE URNA (BU)</div>
-            <div className="text-[10px] font-normal">ELEIÇÕES GERAIS 2026 - SIMULAÇÃO EXTENSÃO</div>
+            <div>SIMULAÇÃO EDUCATIVA — NÃO OFICIAL</div>
+            <div>BOLETIM SIMULADO (BU)</div>
+            <div className="text-[10px] font-normal">CANDIDATOS E RESULTADOS FICTÍCIOS</div>
           </div>
 
           <div className="space-y-1 pb-2 border-b border-dashed border-slate-500 mb-3 text-[10px]">
             <div>MUNICÍPIO: SALVADOR - BA</div>
-            <div>ZONA ELEITORAL: 018 | SEÇÃO: 0142</div>
-            <div>LOCAL: ESCOLA ESTADUAL PARCEIRA</div>
+            <div>ZONA SIMULADA: 018 | SEÇÃO: 0142</div>
+            <div>LOCAL: DADO ILUSTRATIVO</div>
             <div>DATA DA EMISSÃO: {dataHoje} ÀS {horaHoje}</div>
-            <div>STATUS: VOTAÇÃO ENCERRADA / LACRADA</div>
+            <div>STATUS: APURAÇÃO DA DEMONSTRAÇÃO</div>
           </div>
 
           {/* Votos Prefeito */}

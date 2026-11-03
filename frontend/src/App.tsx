@@ -8,10 +8,14 @@ import { Voto } from './types';
 import { CANDIDATOS } from './data/candidatos';
 
 const STORAGE_KEY = 'urna_cidada_votos_v2';
+const DEMO_KEY = 'urna_cidada_demo_incluida';
 
 export function App() {
   const [abaAtiva, setAbaAtiva] = useState<'urna' | 'apuracao' | 'educativo'>('urna');
   const [mostrarBoletim, setMostrarBoletim] = useState<boolean>(false);
+  const [incluiDadosDemo, setIncluiDadosDemo] = useState<boolean>(
+    () => localStorage.getItem(DEMO_KEY) !== 'false'
+  );
 
   const [votos, setVotos] = useState<Voto[]>(() => {
     const salvo = localStorage.getItem(STORAGE_KEY);
@@ -45,10 +49,14 @@ export function App() {
 
   const zerarVotos = () => {
     setVotos([]);
+    setIncluiDadosDemo(false);
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.setItem(DEMO_KEY, 'false');
   };
 
   const adicionarVotosAleatorios = (quantidade: number) => {
+    setIncluiDadosDemo(true);
+    localStorage.setItem(DEMO_KEY, 'true');
     const novos: Voto[] = [];
     const vereadores = CANDIDATOS.filter((c) => c.cargo === 'VEREADOR');
     const prefeitos = CANDIDATOS.filter((c) => c.cargo === 'PREFEITO');
@@ -81,7 +89,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 flex flex-col justify-between selection:bg-amber-400 selection:text-slate-900">
+    <div className="app-shell">
       <div>
         <Navbar
           abaAtiva={abaAtiva}
@@ -90,7 +98,13 @@ export function App() {
           onAbrirBoletim={() => setMostrarBoletim(true)}
         />
 
-        <main className="py-6">
+        <div role="note" className="simulation-note">
+          <span className="simulation-note__label">Ambiente de demonstração</span>
+          <span>Candidatos e resultados fictícios · dados salvos neste navegador</span>
+          {incluiDadosDemo && <span className="simulation-note__demo">Inclui votos de exemplo</span>}
+        </div>
+
+        <main className="app-main">
           {abaAtiva === 'urna' && (
             <UrnaWeb
               onRegistrarVotos={registrarVotos}
@@ -119,14 +133,12 @@ export function App() {
         />
       )}
 
-      {/* Rodapé Oficial da Aplicação */}
-      <footer className="bg-[#0b2545] text-slate-300 py-6 text-center text-xs border-t border-slate-700 mt-12">
-        <div className="max-w-5xl mx-auto px-4 space-y-1">
-          <p className="font-bold text-white text-sm">
-            Urna Cidadã – Projeto de Extensão Curricular (Ciência da Computação – UNIJORGE)
-          </p>
-          <p className="text-slate-400 text-xs">
-            Salvador – BA • Eleições Gerais 2026 • Sistema de Simulação Eleitoral e Literacia Digital
+      {/* Identificação do projeto */}
+      <footer className="site-footer">
+        <div className="site-footer__inner">
+          <p className="site-footer__brand">Urna Cidadã <span>·</span> Projeto educativo UNIJORGE</p>
+          <p>
+            Simulação cívica para fins de aprendizagem. Não representa uma eleição oficial.
           </p>
         </div>
       </footer>

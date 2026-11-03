@@ -117,14 +117,14 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
   }, [confirmar, corrigir, digitarNumero, votarBranco]);
 
   return (
-    <div className="max-w-6xl mx-auto py-6 px-4">
+    <div className="voting-page">
       
       {/* 1. BARRA SUPERIOR DE INFORMAÇÕES DA SEÇÃO ELEITORAL */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 bg-white border border-slate-300 rounded p-3 shadow-sm">
+      <div className="voting-toolbar">
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
           <div className="text-xs font-mono text-slate-700">
-            <span className="font-bold text-[#00223d]">CABINE DE VOTAÇÃO 01</span> • SEÇÃO: 0142 | ZONA: 018 • SALVADOR - BA
+            <span className="font-bold text-[#00223d]">CABINE DE SIMULAÇÃO 01</span> • SEÇÃO FICTÍCIA: 0142 | ZONA: 018 • SALVADOR - BA
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
           {onAbrirBoletim && (
             <button
               onClick={onAbrirBoletim}
-              className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-slate-200 text-[#00223d] text-xs font-mono font-bold rounded border border-slate-300 transition"
+              className="button"
             >
               <FileText className="w-3.5 h-3.5 text-amber-600" />
               Ver BU
@@ -141,7 +141,7 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
 
           <button
             onClick={() => setMostrarCola(!mostrarCola)}
-            className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-mono font-bold rounded border border-amber-300 transition"
+            className="button"
           >
             <HelpCircle className="w-3.5 h-3.5 text-amber-600" />
             {mostrarCola ? 'Ocultar Colinha' : 'Colinha do Eleitor'}
@@ -150,21 +150,21 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
       </div>
 
       {/* 2. COMPOSIÇÃO DA CABINE: URNA FÍSICA + CÉDULA DE COLINHA */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         
         {/* LADO ESQUERDO: GABINETE DA URNA ELETRÔNICA MODELO UE-2022 */}
-        <div className="lg:col-span-8 bg-[#b8b8b0] p-5 sm:p-7 rounded-2xl shadow-2xl border-4 border-[#8f8f84] relative">
+        <div className="lg:col-span-8 voting-device">
           
           {/* Header Metálico do Gabinete */}
-          <div className="bg-[#1f2327] text-white px-4 py-2.5 rounded-lg mb-4 flex items-center justify-between border-b-2 border-black shadow-inner">
+          <div className="voting-device__header">
             <div className="flex items-center gap-2.5">
               <Shield className="w-5 h-5 text-amber-400" />
               <div>
-                <span className="text-xs font-display font-black tracking-widest text-slate-100 uppercase block leading-none">
-                  JUSTIÇA ELEITORAL
+                <span className="text-xs font-display font-bold tracking-wide text-slate-100 uppercase block leading-none">
+                  SIMULAÇÃO EDUCATIVA
                 </span>
-                <span className="text-[9px] font-mono text-slate-400 uppercase">
-                  URNA ELETRÔNICA BRASILEIRA • MODELO UE-2022
+              <span className="text-[9px] font-mono text-slate-400 uppercase">
+                  TECLADO INTERATIVO
                 </span>
               </div>
             </div>
@@ -174,8 +174,8 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
                 <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
                 <span className="hidden sm:inline">SINTETIZADOR ATIVO</span>
               </div>
-              <div className="bg-emerald-950/80 text-emerald-400 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">
-                PRONTA P/ VOTO
+              <div className="voting-device__state">
+                PRONTA
               </div>
             </div>
           </div>
@@ -184,7 +184,7 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
           <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
             
             {/* TELA LCD DA URNA */}
-            <div className="md:col-span-7 urna-screen-bevel rounded-xl border-4 border-[#24292e] p-5 flex flex-col justify-between min-h-[460px] relative overflow-hidden select-none">
+            <div className="md:col-span-7 urna-screen-bevel rounded-lg border-2 border-[#24292e] p-5 flex flex-col justify-between min-h-[420px] relative overflow-hidden select-none">
               
               {isFinalizada ? (
                 <div className="flex-1 flex flex-col items-center justify-center text-center animate-fade-in my-auto">
@@ -289,7 +289,7 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
                                 className="w-full h-full object-cover"
                               />
                               <div className="absolute bottom-0 inset-x-0 bg-slate-900/90 text-[8px] text-white font-mono text-center py-0.5">
-                                TSE 2026
+                                FICTÍCIO
                               </div>
                             </div>
                           </div>
@@ -337,11 +337,11 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
             </div>
 
             {/* TECLADO FÍSICO COM RELEVO 3D E ACESSIBILIDADE */}
-            <div className="md:col-span-5 bg-[#1a1c1e] rounded-xl p-4 shadow-2xl flex flex-col justify-between border-2 border-[#121314]">
+            <div className="md:col-span-5 voting-keypad">
               
               <div className="text-center pb-2 border-b border-neutral-800">
-                <span className="text-[10px] font-display font-black tracking-widest text-neutral-300 uppercase block">
-                  JUSTIÇA ELEITORAL
+              <span className="text-[10px] font-display font-bold tracking-wide text-neutral-300 uppercase block">
+                  TECLADO NUMÉRICO
                 </span>
                 <span className="text-[8px] text-neutral-500 font-mono uppercase">
                   TECLADO DA URNA
@@ -419,21 +419,16 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
           </div>
         </div>
 
-        {/* LADO DIREITO: CÉDULA / COLINHA OFICIAL DO ELEITOR */}
+        {/* Referência dos números fictícios */}
         {mostrarCola && (
-          <div className="lg:col-span-4 cedula-papel p-5 rounded-lg border border-slate-300 relative font-sans text-xs animate-fade-in shadow-md">
+          <div className="lg:col-span-4 cedula-papel p-5 rounded-lg border border-slate-200 relative font-sans text-xs animate-fade-in">
             
-            {/* Carimbo de Visto da Seção */}
-            <div className="carimbo-oficial absolute top-3 right-3 text-[10px] font-mono font-bold px-2 py-0.5 pointer-events-none">
-              TRE-BA • VISTO
-            </div>
-
-            <div className="border-b border-slate-300 pb-2 mb-3">
-              <span className="text-[10px] font-mono text-slate-500 uppercase block font-semibold">
-                TRE-BA • ELEIÇÕES 2026
+            <div className="border-b border-slate-200 pb-3 mb-4">
+              <span className="text-[10px] text-slate-500 uppercase block font-semibold tracking-wide">
+                Referência rápida
               </span>
-              <h3 className="text-sm font-display font-black text-[#00223d] uppercase">
-                Colinha Oficial do Eleitor
+              <h3 className="text-base font-display font-semibold text-[#263b32] mt-1">
+                Candidaturas fictícias
               </h3>
               <p className="text-[11px] text-slate-600 mt-0.5">
                 Utilize os números simulados abaixo para testar o voto na urna:
@@ -441,60 +436,36 @@ export const UrnaWeb: React.FC<UrnaWebProps> = ({ onRegistrarVotos, onAbrirBolet
             </div>
 
             <div className="space-y-4">
-              <div>
+              <div className="candidate-reference-group">
                 <span className="font-mono font-bold text-[#00223d] text-[11px] uppercase tracking-wider block border-b border-slate-200 pb-1 mb-1.5">
                   1º Voto: VEREADOR(A) (5 DÍGITOS)
                 </span>
-                <ul className="space-y-1.5 text-[11px] font-mono text-slate-800">
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Profª Ana Beatriz Luz</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">11111 (PAD)</span>
-                  </li>
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Carlos da Saúde</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">11222 (PAD)</span>
-                  </li>
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Marina Meio Ambiente</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">22333 (PHV)</span>
-                  </li>
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Mestre Joaquim Ladeira</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">22444 (PHV)</span>
-                  </li>
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Tereza do Farol</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">33555 (PMA)</span>
-                  </li>
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Davi Recife Novo</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">33666 (PMA)</span>
-                  </li>
+                <ul className="candidate-reference-list">
+                  {CANDIDATOS.filter((candidato) => candidato.cargo === 'VEREADOR').map((candidato) => (
+                    <li key={candidato.numero}>
+                      <span>{candidato.nome}</span>
+                      <strong>{candidato.numero} <small>{candidato.partido.sigla}</small></strong>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
-              <div>
+              <div className="candidate-reference-group">
                 <span className="font-mono font-bold text-[#00223d] text-[11px] uppercase tracking-wider block border-b border-slate-200 pb-1 mb-1.5">
                   2º Voto: PREFEITO(A) (2 DÍGITOS)
                 </span>
-                <ul className="space-y-1.5 text-[11px] font-mono text-slate-800">
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Dra. Helena Ventura</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">11 (PAD)</span>
-                  </li>
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Otávio Campos</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">22 (PHV)</span>
-                  </li>
-                  <li className="flex justify-between items-baseline bg-white/70 p-1 rounded border border-slate-200">
-                    <span>Beatriz Marés</span>
-                    <span className="font-bold text-[#00223d] bg-slate-100 px-1.5 rounded">33 (PMA)</span>
-                  </li>
+                <ul className="candidate-reference-list">
+                  {CANDIDATOS.filter((candidato) => candidato.cargo === 'PREFEITO').map((candidato) => (
+                    <li key={candidato.numero}>
+                      <span>{candidato.nome}</span>
+                      <strong>{candidato.numero} <small>{candidato.partido.sigla}</small></strong>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-300 text-[10px] text-slate-500 font-mono text-center">
+            <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-slate-500 text-center">
               Dica: você também pode digitar os números direto no teclado do notebook.
             </div>
 

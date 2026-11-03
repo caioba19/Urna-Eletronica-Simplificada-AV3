@@ -28,6 +28,7 @@ public class ApuracaoDialog extends JDialog {
 
     private String montarTexto(List<Apuracao> apuracoes, String fonte) {
         StringBuilder sb = new StringBuilder();
+        sb.append("SIMULAÇÃO EDUCATIVA — dados fictícios.\n");
         sb.append("Fonte dos dados: ").append(fonte).append("\n\n");
 
         for (Apuracao a : apuracoes) {

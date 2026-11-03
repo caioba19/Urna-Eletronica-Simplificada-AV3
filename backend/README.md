@@ -1,5 +1,7 @@
 # Urna Cidadã
 
+> Simulador educativo com candidatos e resultados fictícios; não é um sistema oficial de votação.
+
 Simulador de urna eletrônica em Java (Swing) com votos salvos no Firebase Cloud Firestore.
 
 ## Rodar
@@ -15,9 +17,9 @@ java -jar target/urna-cidada-1.0.0.jar
 
 1. Console do Firebase > criar projeto > Firestore Database (modo teste).
 2. Configurações do projeto > Contas de serviço > Gerar nova chave privada.
-3. Salvar o JSON como `firebase-key.json` na raiz do projeto (ou definir a variável `FIREBASE_CREDENTIALS` com o caminho).
+3. Salvar o JSON como `firebase-key.json` nesta pasta (`backend/`) ou definir `FIREBASE_CREDENTIALS` com o caminho completo.
 
-Sem o arquivo, a urna roda com armazenamento em memória.
+Sem credencial válida, a urna roda com armazenamento em memória e os votos se perdem ao fechar o programa. A urna só avança após confirmar a gravação; falhas são mostradas e permitem nova tentativa.
 
 ## Uso
 

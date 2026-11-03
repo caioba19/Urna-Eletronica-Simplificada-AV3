@@ -1,5 +1,7 @@
 # 🗳️ Urna Cidadã: Simulação Educativa e Combate à Desinformação
 
+> **Aviso:** este é um simulador educativo. Candidatos, seção, resultados e boletim são fictícios; não é um sistema oficial de votação. A versão web mantém os dados somente no armazenamento local do navegador. A versão desktop pode usar Firestore quando configurada.
+
 > **Proposta de Extensão Curricular – Curso de Análise e Desenvolvimento de Sistemas (ADS)**  
 > **Centro Universitário Jorge Amado (UNIJORGE) – Salvador/BA**  
 > **Professor Orientador:** Prof. Anildo Matos  
@@ -13,7 +15,7 @@ O **Urna Cidadã** é um projeto de extensão universitária concebido no âmbit
 
 O ecossistema é composto por:
 1. **Core Backend / Desktop (Java 17 + Swing):** Aplicação focada nos conceitos clássicos de POO (abstração, herança, polimorfismo, encapsulamento e padrões de projeto), simulador de urna em Java Swing com sintetizador de áudio nativo e persistência em nuvem com Firebase (Cloud Firestore) e fallback em memória.
-2. **Frontend Web Moderno (React + TypeScript + Tailwind CSS):** Simulador web interativo, painel de apuração em tempo real estilo cobertura eleitoral e módulo educativo com quiz sobre segurança da urna e combate a deepfakes.
+2. **Frontend Web (React + TypeScript + Tailwind CSS):** Simulador interativo, painel demonstrativo de apuração e módulo educativo com quiz sobre segurança da urna e combate a deepfakes. A aplicação inicia com votos fictícios de demonstração; use **Zerar Urna** para começar sem eles. O botão **Simular +10 Votos** acrescenta dados gerados aleatoriamente.
 
 ---
 
@@ -64,7 +66,8 @@ java -jar target/urna-cidada-1.0.0.jar
 ```
 
 * **Modo Offline:** Se não houver arquivo `firebase-key.json`, a urna inicializa automaticamente em memória local sem travar.
-* **Modo Firebase:** Coloque a chave `firebase-key.json` na raiz da pasta `backend/` para sincronizar os votos com o Google Cloud Firestore.
+* **Modo Firebase:** Coloque a chave `firebase-key.json` na pasta `backend/` ou defina `FIREBASE_CREDENTIALS` com o caminho do arquivo.
+* Sem credencial válida, o desktop usa armazenamento em memória; os votos desaparecem ao fechar o programa.
 
 ---
 
@@ -103,6 +106,8 @@ A votação segue a ordem oficial do TSE com candidatos e partidos fictícios:
   * **BRANCO:** Voto em branco (apenas se nenhum número foi digitado).
   * **CORRIGE:** Limpa os dígitos digitados no cargo atual.
   * **CONFIRMA:** Registra o voto e avança para o próximo cargo ou finaliza.
+
+No desktop, a urna só avança depois que o repositório confirma a gravação. Em caso de falha, exibe um aviso e mantém o voto na tela para nova tentativa.
 
 ---
 
